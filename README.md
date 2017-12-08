@@ -1,4 +1,4 @@
-# AutoHotkey-easy-switch-keymapping-to-arrows
+# AutoHotkey-HotArrow
 
 Press <kbd>a</kbd> <kbd>s</kbd> <kbd>d</kbd> <kbd>w</kbd> or <kbd>l</kbd>
 <kbd>k</kbd> <kbd>j</kbd> <kbd>h</kbd>, quickly and successively, to remap
