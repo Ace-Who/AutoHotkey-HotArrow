@@ -1,4 +1,7 @@
-﻿#If !remappedToArrowKeys("asdw")
+﻿; Author: Ace Who <subsistence99@gmail.com>
+; Project: https://github.com/Ace-Who/AutoHotkey-easy-switch-keymapping-to-arrows.git
+
+#If !remappedToArrowKeys("asdw")
 ~a::waitKeysToChangeRemappingToArrowKeys("asdw")
 #If !remappedToArrowKeys("lkjh")
 ~l::waitKeysToChangeRemappingToArrowKeys("lkjh")
