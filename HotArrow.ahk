@@ -1,5 +1,5 @@
 ﻿; Author: Ace Who <subsistence99@gmail.com>
-; Project: https://github.com/Ace-Who/AutoHotkey-easy-switch-keymapping-to-arrows.git
+; Project: https://github.com/Ace-Who/AutoHotkey-HotArrow.git
 
 #If !HotArrow_MappingState().asdw
 ~a::HotArrow_WaitKeysToChangeMappingState("asdw")
