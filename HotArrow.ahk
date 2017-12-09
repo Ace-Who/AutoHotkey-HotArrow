@@ -1,12 +1,12 @@
 ﻿; Author: Ace Who <subsistence99@gmail.com>
 ; Project: https://github.com/Ace-Who/AutoHotkey-easy-switch-keymapping-to-arrows.git
 
-#If !HotArrow_MappingState("asdw")
+#If !HotArrow_MappingState().asdw
 ~a::HotArrow_WaitKeysToChangeMappingState("asdw")
-#If !HotArrow_MappingState("lkjh")
+#If !HotArrow_MappingState().lkjh
 ~l::HotArrow_WaitKeysToChangeMappingState("lkjh")
 
-#If HotArrow_MappingState("asdw")
+#If HotArrow_MappingState().asdw
 w::Up
 s::Down
 *a::
@@ -19,7 +19,7 @@ s::Down
   Return
 d::Right
 
-#If HotArrow_MappingState("lkjh")
+#If HotArrow_MappingState().lkjh
 k::Up
 j::Down
 h::Left
@@ -28,12 +28,13 @@ h::Left
   SetTimer HotArrow_WaitKeysToChangeMappingStateOfHJKL, -1
   Return
 
-HotArrow_MappingState(keys, toggle := 0) {
+HotArrow_MappingState() {
   static table := {}
-  if (toggle) {
-    table[keys] := !table[keys]
-  }
-  Return table[keys]
+  Return table
+}
+
+HotArrow_ChangeMappingState(keys) {
+  HotArrow_MappingState()[keys] := !HotArrow_MappingState()[keys]
 }
 
 HotArrow_WaitKeysToChangeMappingState(keys) {
@@ -47,9 +48,9 @@ HotArrow_WaitKeysToChangeMappingState(keys) {
   KeyWait % SubStr(keys, 4, 1), D T0.2
   if ErrorLevel
     Return
-  HotArrow_MappingState(keys, 1)
+  HotArrow_ChangeMappingState(keys)
   TrayTip AutoHotkey
-      , % HotArrow_MappingState(keys)
+      , % HotArrow_MappingState()[keys]
         ? "Keys <" . keys . "> are remapped to arrow keys."
         : "Keys <" . keys . "> are UNremapped to arrow keys."
   Return
