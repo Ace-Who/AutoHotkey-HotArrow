@@ -2,9 +2,15 @@
 ; Project: https://github.com/Ace-Who/AutoHotkey-HotArrow.git
 
 #If !HotArrow_MappingState().asdw
-~a::HotArrow_WaitKeysToChangeMappingState("asdw")
+$a::
+  SendInput a
+  SetTimer HotArrow_WaitKeysToChangeMappingStateOfWASD
+  return
 #If !HotArrow_MappingState().lkjh
-~l::HotArrow_WaitKeysToChangeMappingState("lkjh")
+$l::
+  SendInput l
+  SetTimer HotArrow_WaitKeysToChangeMappingStateOfHJKL
+  return
 
 #If HotArrow_MappingState().asdw
 w::Up
@@ -16,7 +22,7 @@ s::Down
    * won't launch this hotkey and send "Left" as frequently as supposed.
    */
   SetTimer HotArrow_WaitKeysToChangeMappingStateOfWASD, -1
-  Return
+  return
 d::Right
 
 #If HotArrow_MappingState().lkjh
@@ -26,11 +32,11 @@ h::Left
 *l::
   SendInput {Blind}{Right}
   SetTimer HotArrow_WaitKeysToChangeMappingStateOfHJKL, -1
-  Return
+  return
 
 HotArrow_MappingState() {
   static table := {}
-  Return table
+  return table
 }
 
 HotArrow_ChangeMappingState(keys) {
@@ -41,26 +47,26 @@ HotArrow_WaitKeysToChangeMappingState(keys) {
   ; Quickly press a series of "keys" to remap/unremap them to arrow keys.
   KeyWait % SubStr(keys, 2, 1), D T0.1
   if ErrorLevel
-    Return
+    return
   KeyWait % SubStr(keys, 3, 1), D T0.1
   if ErrorLevel
-    Return
+    return
   KeyWait % SubStr(keys, 4, 1), D T0.2
   if ErrorLevel
-    Return
+    return
   HotArrow_ChangeMappingState(keys)
   TrayTip AutoHotkey
       , % HotArrow_MappingState()[keys]
         ? "Keys <" . keys . "> are remapped to arrow keys."
         : "Keys <" . keys . "> are UNremapped to arrow keys."
-  Return
+  return
 }
 
 HotArrow_WaitKeysToChangeMappingStateOfWASD:
 HotArrow_WaitKeysToChangeMappingState("asdw")
-Return
+return
 
 HotArrow_WaitKeysToChangeMappingStateOfHJKL:
 HotArrow_WaitKeysToChangeMappingState("lkjh")
-Return
+return
 
