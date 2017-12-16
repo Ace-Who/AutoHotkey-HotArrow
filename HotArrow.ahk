@@ -4,7 +4,7 @@
 #If !HotArrow_MappingState().wasd
 ~a & ~w::HotArrow_WaitKeysToChangeMappingState("wasd")
 ~w & ~a::HotArrow_WaitKeysToChangeMappingState("wasd")
-#If !HotArrow_MappingState().lkjh
+#If !HotArrow_MappingState().hljk
 ~l & ~h::HotArrow_WaitKeysToChangeMappingState("hljk")
 ~h & ~l::HotArrow_WaitKeysToChangeMappingState("hljk")
 
